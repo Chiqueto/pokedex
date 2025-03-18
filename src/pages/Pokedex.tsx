@@ -1,0 +1,80 @@
+import { useEffect, useState } from "react"
+import { Pokemon } from "../types/Pokemon"
+import Loading from "../components/Loading";
+
+const Pokedex = () => {
+    const [pokemon, setPokemon] = useState<Pokemon>()
+    const [pokeName, setPokeName] = useState<string>('')
+    const [errorMsg, setErrorMsg] = useState<string>('')
+    const [loading, setLoading] = useState<boolean>(false)
+
+    function loadApi() {
+        setLoading(true)
+        if (!pokeName) {
+            setErrorMsg("Nenhum pokémon encontrado")
+            setPokemon(undefined)
+            setLoading(false)
+
+            return
+        }
+        const url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`
+        fetch(url)
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+                setPokemon(json)
+                setLoading(false)
+            })
+            .catch(err => {
+                console.log(err)
+                setErrorMsg("Erro ao buscar pokémon")
+                setPokemon(undefined)
+                setLoading(false)
+                console.log(errorMsg)
+            })
+    }
+
+    useEffect(() => {
+    }, [errorMsg])
+
+
+    const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPokeName(event.target.value)
+    }
+
+    return (
+        <div className="flex flex-col w-[100%] justify-center items-center">
+
+
+            <div className="flex flex-col justify-center items-center mt-4">
+                <label className="text-lg font-bold" htmlFor="pokename">Busque pelo pokémon</label>
+                <input type="text" value={pokeName} name="pokename" placeholder="Pikachu" onChange={handleNameChange} className="bg-amber-100 border border-black rounded-xl px-2 mt-2" />
+                <button onClick={loadApi} className="bg-red-500 border border-black mt-2 cursor-pointer hover:bg-red-600 shadow  shadow-black text-white px-2 py-1 rounded-2xl">Buscar Pokemon</button>
+            </div>
+
+            {loading ? (
+                <Loading loading={loading} />
+            ) : (
+                pokemon ? (
+                    <div>
+                        <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                        <div>Nome: {pokemon.name}</div>
+                        <div>Número: {pokemon.id}</div>
+                        <div>Peso: {pokemon.weight / 10} Kg</div>
+                        <div>Altura: {pokemon.height / 10}m</div>
+
+                    </div>
+                ) : (
+                    <div>
+                        <h2>{errorMsg}</h2>
+                    </div>
+                )
+            )}
+
+        </div>
+
+
+    )
+}
+
+export default Pokedex;
