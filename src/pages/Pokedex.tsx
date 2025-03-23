@@ -8,7 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Pokedex = () => {
     const [pokemon, setPokemon] = useState<Pokemon>()
-    const [pokeName, setPokeName] = useState<string>('fuecoco')
+    const [pokeName, setPokeName] = useState<string>('charizard')
     const [errorMsg, setErrorMsg] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
 
@@ -71,22 +71,24 @@ const Pokedex = () => {
                         <ScrollArea>
                             <ul>
                                 <li className="mx-2 w-full ">
-                                    <a className="flex flex-row">
-                                        <div className="bg-gray-base w-full px-4">
+                                    <a className="flex flex-row relative">
+                                        <div className="bg-gray-base py-2 w-full px-4">
                                             {/* Nome e Id */}
-                                            <div className="flex flex-col items-start justify-center mb-3">
+                                            <div className="flex flex-col items-start justify-center mb-3 ">
                                                 <p className="font-navigation text-base font-bold">{pokemon.name}</p>
                                                 <p className="font-body text-xs">#{pokemon.id}</p>
                                             </div>
                                             {/* Tipos */}
                                             <div>
                                                 {pokemon.types.map((type, index) => (
-                                                    <div key={index} className="bg-base-red rounded-xl max-w-28 w-full text-center px-2 py-1 text-white text-xs">{type.type.name}</div>
+                                                    <div key={index} className="bg-base-red rounded-xl max-w-28 w-full text-center px-2 py-1 text-white text-xs mb-1">{type.type.name}</div>
                                                 ))}
                                             </div>
 
                                         </div>
-                                        <div className="bg-base-red"></div>
+                                        <div className="bg-base-red h-full w-full z-20 p-20">
+                                            <div><img src={pokemon.sprites.front_default} alt={pokemon.name} /></div>
+                                        </div>
                                     </a>
                                 </li>
                             </ul>
