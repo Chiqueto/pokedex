@@ -11,7 +11,7 @@ const PokeCard = ({ pokemon }: PokeCardProps) => {
                 <div className="bg-gray-base w-full max-h-28 h-full py-0.5 px-4 flex flex-col justify-between rounded-l-xl">
                     {/* Nome e Id */}
                     <div className="flex flex-col items-start justify-center mb-3">
-                        <p className="font-navigation text-base font-bold">{pokemon.name}</p>
+                        <p className="font-navigation text-base font-bold truncate max-w-[140px]">{pokemon.name}</p>
                         <p className="font-body text-xs">#{pokemon.id}</p>
                     </div>
                     {/* Tipos */}
