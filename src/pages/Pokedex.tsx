@@ -16,21 +16,21 @@ const Pokedex = () => {
     const [pokeName, setPokeName] = useState<string>('')  // Se necessário para buscas, mas aqui usamos o endpoint fixo
     const [errorMsg, setErrorMsg] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
+    const [offSet, setOffSet] = useState<number>(0)
+
 
     function loadApi() {
-        setLoading(true)
         // Usando endpoint fixo para listar os primeiros 20 pokémons
-        const url = `https://pokeapi.co/api/v2/pokemon?limit=20`
+        const url = `https://pokeapi.co/api/v2/pokemon?offset=${offSet}&limit=20`
         fetch(url)
             .then(response => response.json())
             .then(async (json) => {
-                // Para cada item em json.results, busca os detalhes completos
                 const pokemonsDetailed = await Promise.all(
                     json.results.map((result: JsonResult) =>
                         fetch(result.url).then(res => res.json())
                     )
                 );
-                setPokemons(pokemonsDetailed);
+                setPokemons([...pokemons, ...pokemonsDetailed]);
                 setLoading(false);
                 console.log("Pokémons atualizados:", pokemonsDetailed)
             })
@@ -43,15 +43,17 @@ const Pokedex = () => {
     }
 
     useEffect(() => {
+        setLoading(true)
         loadApi()
-    }, [])
-
-    useEffect(() => {
-        console.log("pokemons atualizado:", pokemons);
-    }, [pokemons]);
+    }, [offSet])
 
     const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPokeName(event.target.value)
+    }
+
+    const loadMore = () => {
+        // setLoading(true)
+        setOffSet(offSet + 20)
     }
 
     return (
@@ -69,34 +71,34 @@ const Pokedex = () => {
                     <FilterIcon className="w-full h-full" />
                 </Button>
             </div>
-            <div>
-                {loading ? (
+            <div className="text-center">
+                {loading && pokemons.length === 0 ? (
                     <Loading loading={loading} />
                 ) : (
                     pokemons && (
-                        <ScrollArea>
-                            <ul>
+                        <ScrollArea className="mx-2 my-2 h-[520px]">
+                            <ul className="space-y-4 mx-2 mr-4">
                                 {pokemons.map((pokemon: Pokemon) => (
-                                    <li key={pokemon.id} className="mx-2 w-full h-full">
-                                        <a className="flex flex-row max-h-32 relative h-full items-center justify-center">
-                                            <div className="bg-gray-base py-2 w-full px-4 flex flex-col justify-between">
+                                    <li key={pokemon.id} className=" w-full h-full ">
+                                        <a className="flex flex-row max-h-28 relative h-full items-center  justify-center">
+                                            <div className="bg-gray-base w-full max-h-28 h-full py-0.5 px-4 flex flex-col justify-between rounded-l-xl">
                                                 {/* Nome e Id */}
                                                 <div className="flex flex-col items-start justify-center mb-3">
                                                     <p className="font-navigation text-base font-bold">{pokemon.name}</p>
                                                     <p className="font-body text-xs">#{pokemon.id}</p>
                                                 </div>
                                                 {/* Tipos */}
-                                                <div className="flex flex-col items-start">
+                                                <div className="h-14 flex flex-col justify-end items-start ">
                                                     {pokemon.types.map((type, index) => (
-                                                        <div key={index} className="bg-base-red rounded-xl max-w-28 w-full text-center px-2 py-1 text-white text-xs mb-1">
+                                                        <div key={index} className="bg-base-red rounded-xl  max-w-28 w-full text-center px-2 py-1 text-white text-xs mb-1">
                                                             {type.type.name}
                                                         </div>
                                                     ))}
                                                 </div>
                                             </div>
-                                            <div className="bg-base-red h-full w-full z-20 py-2">
+                                            <div className="bg-base-red h-full w-full z-20 max-h-28 rounded-r-xl">
                                                 <div className="relative flex items-center justify-end mx-4">
-                                                    <img src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} className="max-h-48 h-full z-30 mr-2" />
+                                                    <img src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} className="max-h-32  h-full z-30 mr-2 object-fill" />
                                                     <img src="./Pokeball.svg" alt="Pokeball" className="absolute z-10" />
                                                 </div>
                                             </div>
@@ -104,6 +106,7 @@ const Pokedex = () => {
                                     </li>
                                 ))}
                             </ul>
+                            <Button onClick={loadMore} className="mt-4 bg-base-red hover:bg-red-600 w-full max-w-28">{loading ? <Loading loading color="white" size={25} /> : "Carregar mais"}</Button>
                         </ScrollArea>
                     )
                 )}

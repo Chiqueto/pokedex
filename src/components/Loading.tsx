@@ -2,19 +2,20 @@ import RingLoader from "react-spinners/RingLoader";
 
 interface LoadingProps {
     loading: boolean;
+    color?: string;
+    size?: number;
 }
 
-const Loading = ({ loading }: LoadingProps) => {
-    return (<div>
+const Loading = ({ loading, color, size }: LoadingProps) => {
+    return (<div className="flex justify-center items-center h-screen">
         <RingLoader
-            color={"red"}
+            color={color || "red"}
             loading={loading}
             cssOverride={{}}
-            // size={25}
+            size={size || 100}
             speedMultiplier={0.75}
             aria-label="Loading Spinner"
             data-testid="loader"
-
         />
     </div>);
 }
