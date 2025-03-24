@@ -1,4 +1,5 @@
 import { Pokemon } from "@/types/Pokemon";
+import TypeFlag from "./TypeFlag";
 
 interface PokeCardProps {
     pokemon: Pokemon;
@@ -16,11 +17,7 @@ const PokeCard = ({ pokemon }: PokeCardProps) => {
                     </div>
                     {/* Tipos */}
                     <div className="h-14 flex flex-col justify-end items-start ">
-                        {pokemon.types.map((type, index) => (
-                            <div key={index} className="bg-base-red rounded-xl  max-w-28 w-full text-center px-2 py-1 text-white text-xs mb-1">
-                                {type.type.name}
-                            </div>
-                        ))}
+                        <TypeFlag pokemon={pokemon} />
                     </div>
                 </div>
                 <div className="bg-base-red h-full w-full z-20 max-h-28 rounded-r-xl">
