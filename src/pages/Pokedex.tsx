@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Pokemon } from "../types/Pokemon"
 import Loading from "../components/Loading";
-import { FilterIcon, SearchIcon } from "lucide-react";
+import { FilterIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -54,7 +54,7 @@ const Pokedex = () => {
     }
 
     useEffect(() => {
-        if (pokemons.length > 0 && pokemons.length < 1027) { // Evita loop infinito
+        if (pokemons.length > 0 && pokemons.length < 1300) { // Evita loop infinito
             setLoading(true)
             const interval = setInterval(() => {
                 setOffSet(offSet + 50);
@@ -64,47 +64,24 @@ const Pokedex = () => {
         }
     }, [pokemons])
 
-    const searchPokemon = () => {
+    useEffect(() => {
         if (pokeName === '') {
             setPokemonsFiltered([])
-            return
         } else {
-            pokemons.forEach(pokemon => {
-                if (pokemon.name === pokeName) {
-                    setPokemonsFiltered([pokemon])
-                    return
-                } else {
-                    setLoading(true)
-                    const url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`
-                    fetch(url)
-                        .then(response => response.json())
-                        .then(json => {
-                            setPokemonsFiltered([json])
-                            setLoading(false)
-                        })
-                        .catch(err => {
-                            console.error(err)
-                            setErrorMsg("Erro ao buscar pokémon")
-                            setPokemonsFiltered([])
-                            setLoading(false)
-                        })
-                }
-            })
+            setPokemonsFiltered(pokemons.filter(pokemon => pokemon.name.includes(pokeName)))
         }
+    }, [pokeName])
 
-    }
+
 
     return (
         <section>
             <div className="mt-4 mx-2 flex flex-row justify-between items-center gap-3">
                 <Input
                     type="text"
-                    className="max-w-64 w-full bg-gray-100 border-base-red border shadow-sm rounded-xl h-10 focus:outline-1 focus:outline-base-red px-2 text-lg shadow-black/25"
+                    className=" w-full flex-1 bg-gray-100 border-base-red border shadow-sm rounded-xl h-10 focus:outline-1 focus:outline-base-red px-2 text-lg shadow-black/25"
                     onChange={handleNameChange}
                 />
-                <Button onClick={searchPokemon} className="bg-base-red border border-black p-2 rounded-xl flex items-center justify-center w-12 h-12">
-                    <SearchIcon className="w-full h-full" />
-                </Button>
                 <Button className="bg-base-red border border-black p-2 rounded-xl flex items-center justify-center w-12 h-12">
                     <FilterIcon className="w-full h-full" />
                 </Button>
@@ -113,16 +90,20 @@ const Pokedex = () => {
                 {loading && pokemons.length === 0 ? (
                     <Loading loading={loading} />
                 ) : (
-                    pokemons && pokemonsFiltered.length === 0 && (
-                        <ScrollArea className="mx-2 my-2 h-[520px]">
-                            <ul className="space-y-4 mx-2 mr-4">
-                                {pokemons.map((pokemon: Pokemon) => (
+
+                    <ScrollArea className="mx-2 my-2 h-[520px]">
+                        <ul className="space-y-4 mx-2 mr-4">
+                            {pokemons && pokemonsFiltered.length === 0 ? (
+                                pokemons.map((pokemon: Pokemon) => (
+                                    <PokeCard pokemon={pokemon} />
+                                ))) : pokemonsFiltered.map((pokemon: Pokemon) => (
                                     <PokeCard pokemon={pokemon} />
                                 ))}
-                            </ul>
-                            {loading && <Loading loading color="red" size={100} />}
-                        </ScrollArea>
-                    )
+
+                        </ul>
+                        {loading && <Loading loading color="red" size={100} />}
+                    </ScrollArea>
+
                 )}
             </div>
         </section>
