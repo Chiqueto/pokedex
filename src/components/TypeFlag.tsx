@@ -7,7 +7,7 @@ interface TypeFlagProps {
 // Mapeamento de cores por tipo de Pokémon
 const typeColors: Record<string, string> = {
     normal: "bg-gray-400",
-    fire: "bg-red-500",
+    fire: "bg-orange-500",
     water: "bg-blue-500",
     grass: "bg-green-500",
     electric: "bg-yellow-400",
