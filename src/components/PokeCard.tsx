@@ -20,8 +20,8 @@ const PokeCard = ({ pokemon }: PokeCardProps) => {
                         <TypeFlag pokemon={pokemon} />
                     </div>
                 </div>
-                <div className="bg-base-red h-full w-full z-20 max-h-28 rounded-r-xl">
-                    <div className="relative flex items-center justify-end mx-4">
+                <div className="bg-base-red w-full z-20 h-28 rounded-r-xl">
+                    <div className="relative flex items-center justify-end mx-4 h-full max-h-28">
                         <img src={pokemon.sprites.other["official-artwork"].front_default ? pokemon.sprites.other["official-artwork"].front_default : pokemon.sprites.front_default} alt={pokemon.name} className="max-h-32  h-full z-30 mr-2 object-fill" />
                         <img src="./Pokeball.svg" alt="Pokeball" className="absolute z-10" />
                     </div>
