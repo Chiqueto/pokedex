@@ -16,7 +16,7 @@ const Pokedex = () => {
     const [pokemons, setPokemons] = useState<Pokemon[]>([])
     const [pokemonsFiltered, setPokemonsFiltered] = useState<Pokemon[]>([])
     const [pokeName, setPokeName] = useState<string>('')
-    const [errorMsg, setErrorMsg] = useState<string>('')
+    // const [errorMsg, setErrorMsg] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
     const [offSet, setOffSet] = useState<number>(0)
 
@@ -38,7 +38,7 @@ const Pokedex = () => {
             })
             .catch(err => {
                 console.error(err)
-                setErrorMsg("Erro ao buscar pokémon")
+                // setErrorMsg("Erro ao buscar pokémon")
                 setPokemons([])
                 setLoading(false)
             })
