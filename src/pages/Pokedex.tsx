@@ -93,12 +93,14 @@ const Pokedex = () => {
 
                     <ScrollArea className="mx-2 my-2 h-[520px]">
                         <ul className="space-y-4 mx-2 mr-4">
-                            {pokemons && pokemonsFiltered.length === 0 ? (
+                            {pokemons && pokeName === '' ? (
                                 pokemons.map((pokemon: Pokemon) => (
                                     <PokeCard pokemon={pokemon} />
-                                ))) : pokemonsFiltered.map((pokemon: Pokemon) => (
-                                    <PokeCard pokemon={pokemon} />
-                                ))}
+                                ))) : pokemonsFiltered.length !== 0 ? (
+                                    pokemonsFiltered.map((pokemon: Pokemon) => (
+                                        <PokeCard pokemon={pokemon} />))
+                                ) : (<li>Nenhum pokémon encontrado</li>)
+                            }
 
                         </ul>
                         {loading && <Loading loading color="red" size={100} />}
