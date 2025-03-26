@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import PokeCard from "@/components/PokeCard";
+// import HoverCard from "@/components/HoverCard";
 
 type JsonResult = {
     name: string,
@@ -19,6 +20,7 @@ const Pokedex = () => {
     // const [errorMsg, setErrorMsg] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
     const [offSet, setOffSet] = useState<number>(0)
+    // const [isPokemonSelected, setPokemonSelected] = useState<boolean>(true)
 
 
     function loadApi(append: boolean) {
@@ -75,7 +77,7 @@ const Pokedex = () => {
 
 
     return (
-        <section>
+        <section className="relative">
             <div className="mt-4 mx-2 flex flex-row justify-between items-center gap-3">
                 <Input
                     type="text"
@@ -108,6 +110,9 @@ const Pokedex = () => {
 
                 )}
             </div>
+            {/* {isPokemonSelected && (
+                <HoverCard />
+            )} */}
         </section>
     )
 }
