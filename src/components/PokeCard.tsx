@@ -3,11 +3,13 @@ import TypeFlag from "./TypeFlag";
 
 interface PokeCardProps {
     pokemon: Pokemon;
+    setSelectedPokemon: (pokemon: Pokemon) => void;
 }
 
-const PokeCard = ({ pokemon }: PokeCardProps) => {
+
+const PokeCard = ({ pokemon, setSelectedPokemon }: PokeCardProps) => {
     return (
-        <li key={pokemon.id} className="w-full h-full cursor-pointer">
+        <li onClick={() => { setSelectedPokemon(pokemon) }} key={pokemon.id} className="w-full h-full cursor-pointer">
             <div className="flex flex-row max-h-28 relative h-full items-center justify-center group">
                 {/* Lado esquerdo - Nome e Tipos */}
                 <div className="relative overflow-hidden w-full max-h-28 h-full py-0.5 px-4 flex flex-col justify-between rounded-l-xl bg-gray-base transition-colors duration-600 group-hover:text-white">
