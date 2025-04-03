@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import PokeCard from "@/components/PokeCard";
-import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from "@/components/ui/drawer";
+import HoverCard from "@/components/HoverCard";
 // import HoverCard from "@/components/HoverCard";
 
 type JsonResult = {
@@ -113,20 +114,7 @@ const Pokedex = () => {
                             {selectedPokemon &&
                                 < DrawerContent >
                                     <DrawerHeader className="p-0 bg-base-red">
-                                        <div className="flex w-full flex-row items-center justify-between mx-4 font-navigation">
-                                            <div className="flex flex-row items-baseline justify-center gap-4">
-                                                <DrawerTitle className="text-white text-2xl">{selectedPokemon.name}</DrawerTitle>
-                                                <DrawerDescription className="text-white opacity-70 text-base">#{selectedPokemon.id}</DrawerDescription>
-                                            </div>
-                                            <div className="relative flex items-center justify-end mr-8 h-full max-h-28 overflow-visible">
-                                                <img
-                                                    src={selectedPokemon.sprites.other["official-artwork"].front_default || selectedPokemon.sprites.front_default}
-                                                    alt={selectedPokemon.name}
-                                                    className="max-h-32 h-full z-30 mr-2 object-fill group-hover:scale-150 transition-transform duration-600"
-                                                />
-                                                <img src="./Pokeball.svg" alt="Pokeball" className="absolute z-10" />
-                                            </div>
-                                        </div>
+                                        <HoverCard pokemon={selectedPokemon} />
                                     </DrawerHeader>
                                 </DrawerContent>}
 
