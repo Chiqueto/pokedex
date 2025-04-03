@@ -7,7 +7,7 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/pokedex" element={<Pokedex />} />
+        <Route path="/" element={<Pokedex />} />
       </Routes>
     </Router>
   )
