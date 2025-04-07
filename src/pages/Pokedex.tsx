@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import PokeCard from "@/components/PokeCard";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from "@/components/ui/drawer";
-import HoverCard from "@/components/HoverCard";
+import HoverCardHeader from "@/components/HoverCardHeader";
+import PokemonMenu from "@/components/PokemonMenu";
+import EvolutiveChain from "@/components/EvolutiveChain";
 // import HoverCard from "@/components/HoverCard";
 
 type JsonResult = {
@@ -81,7 +83,7 @@ const Pokedex = () => {
     return (
 
         <section className="relative">
-            <Drawer>
+            <Drawer >
 
                 <div className="mt-4 mx-2 flex flex-row justify-between items-center gap-3">
                     <Input
@@ -93,7 +95,7 @@ const Pokedex = () => {
                         <FilterIcon className="w-full h-full" />
                     </Button>
                 </div>
-                <div className="text-center">
+                <div className="text-center ">
                     {loading && pokemons.length === 0 ? (
                         <Loading loading={loading} />
                     ) : (
@@ -112,18 +114,38 @@ const Pokedex = () => {
                                 </DrawerTrigger>
                             </ul>
                             {selectedPokemon &&
-                                < DrawerContent >
-                                    <DrawerHeader className="p-0 bg-base-red">
-                                        <HoverCard pokemon={selectedPokemon} />
-                                    </DrawerHeader>
-                                </DrawerContent>}
+                                < DrawerContent className="mx-auto w-full bg-base-red">
+                                    <div className="mx-auto w-full  bg-white">
+                                        <DrawerHeader className="p-0 rounded-3xl">
+                                            <HoverCardHeader pokemon={selectedPokemon} />
+                                        </DrawerHeader>
+                                        <ScrollArea className="p-4 bg-white">
+                                            {/* EVOLUÇÃO */}
+                                            <PokemonMenu title="Linha Evolutiva">
+                                                <EvolutiveChain pokemon={selectedPokemon} />
+                                            </PokemonMenu>
+                                            {/* STATUS */}
+                                            <PokemonMenu title="Status">
+                                                <div className="flex flex-col gap-2">
+                                                    {selectedPokemon.stats.map((stat) => (
+                                                        <div key={stat.stat.name} className="flex justify-between items-center">
+                                                            <span className="text-gray-700">{stat.stat.name}</span>
+                                                            <span className="text-gray-700">{stat.base_stat}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </PokemonMenu>
+                                        </ScrollArea>
+                                    </div>
+                                </DrawerContent>
+                            }
 
                             {loading && <Loading loading color="red" size={100} />}
                         </ScrollArea>
 
                     )}
                 </div>
-            </Drawer>
+            </Drawer >
 
         </section >
 
@@ -131,3 +153,5 @@ const Pokedex = () => {
 }
 
 export default Pokedex;
+
+
