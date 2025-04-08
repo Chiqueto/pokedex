@@ -19,8 +19,10 @@ const EvolutiveChain = ({ pokemon }: EvolutiveChainProps) => {
             const evolutionData = await evolutionResponse.json();
 
             // Função recursiva para coletar os nomes
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const extractEvolutionNames = (chain: any): string[] => {
                 const names = [chain.species.name];
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 chain.evolves_to.forEach((evo: any) => {
                     names.push(...extractEvolutionNames(evo));
                 });
@@ -51,7 +53,7 @@ const EvolutiveChain = ({ pokemon }: EvolutiveChainProps) => {
     }
 
     return (
-        <ScrollArea className="overflow-x-auto ">
+        <ScrollArea className="overflow-x-auto w-88 mx-auto sm:w-[500px] md:w-[600px] lg:w-[1000px] xl:w-full">
             <div className="flex justify-between gap-6 items-center mx-auto w-max py-4">
                 {evolutiveChain.map((poke, index) => (
                     <div key={poke.id} className="flex items-center justify-center gap-2">
@@ -63,8 +65,8 @@ const EvolutiveChain = ({ pokemon }: EvolutiveChainProps) => {
                                     className="w-full h-full"
                                 />
                             </div>
-                            <p className="font-bold capitalize">{poke.name}</p>
-                            <p className="text-sm text-gray-500">Nº {poke.id}</p>
+                            <p className="font-navigation text-base capitalize">{poke.name}</p>
+                            <p className="text-base font-body text-gray-500">Nº {poke.id}</p>
                         </div>
                         {index < evolutiveChain.length - 1 && (
                             <span className="text-2xl text-gray-400">→</span>

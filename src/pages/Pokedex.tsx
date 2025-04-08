@@ -4,13 +4,14 @@ import Loading from "../components/Loading";
 import { FilterIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import PokeCard from "@/components/PokeCard";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from "@/components/ui/drawer";
 import HoverCardHeader from "@/components/HoverCardHeader";
 import PokemonMenu from "@/components/PokemonMenu";
 import EvolutiveChain from "@/components/EvolutiveChain";
-// import HoverCard from "@/components/HoverCard";
+import PokemonStats from "@/components/PokemonStats";
+import TypeReferences from "@/components/TypeReferences";
 
 type JsonResult = {
     name: string,
@@ -82,8 +83,8 @@ const Pokedex = () => {
 
     return (
 
-        <section className="relative">
-            <Drawer >
+        <section className="flex flex-col h-[calc(100vh-64px)] overflow-hidden">
+            <Drawer>
 
                 <div className="mt-4 mx-2 flex flex-row justify-between items-center gap-3">
                     <Input
@@ -95,12 +96,12 @@ const Pokedex = () => {
                         <FilterIcon className="w-full h-full" />
                     </Button>
                 </div>
-                <div className="text-center ">
+                <div className="text-center">
                     {loading && pokemons.length === 0 ? (
                         <Loading loading={loading} />
                     ) : (
 
-                        <ScrollArea className="mx-2 my-2 h-[520px]">
+                        <ScrollArea className="mx-2 my-2 flex-1 h-[calc(100vh-128px)] ">
                             <ul className="">
                                 <DrawerTrigger className="w-full space-y-4 mx-2 mr-4">
                                     {pokemons && pokeName === '' ? (
@@ -114,27 +115,28 @@ const Pokedex = () => {
                                 </DrawerTrigger>
                             </ul>
                             {selectedPokemon &&
-                                < DrawerContent className="mx-auto w-full bg-base-red">
-                                    <div className="mx-auto w-full  bg-white">
-                                        <DrawerHeader className="p-0 rounded-3xl">
+                                < DrawerContent className="mx-auto w-full bg-base-red ">
+                                    <div className="mx-auto w-full  bg-white ">
+                                        <DrawerHeader className="p-0 rounded-3xl ">
                                             <HoverCardHeader pokemon={selectedPokemon} />
                                         </DrawerHeader>
-                                        <ScrollArea className="p-4 bg-white">
+                                        <ScrollArea className="p-4 pb-10 bg-white h-72 overflow-y-auto">
                                             {/* EVOLUÇÃO */}
-                                            <PokemonMenu title="Linha Evolutiva">
+                                            <PokemonMenu title="Cadeia Evolutiva">
                                                 <EvolutiveChain pokemon={selectedPokemon} />
                                             </PokemonMenu>
-                                            {/* STATUS */}
-                                            <PokemonMenu title="Status">
-                                                <div className="flex flex-col gap-2">
-                                                    {selectedPokemon.stats.map((stat) => (
-                                                        <div key={stat.stat.name} className="flex justify-between items-center">
-                                                            <span className="text-gray-700">{stat.stat.name}</span>
-                                                            <span className="text-gray-700">{stat.base_stat}</span>
-                                                        </div>
-                                                    ))}
-                                                </div>
+                                            {/* TIPAGENS */}
+                                            <PokemonMenu title="Fraquezas & Resistências">
+                                                <TypeReferences pokemon={selectedPokemon} />
                                             </PokemonMenu>
+                                            {/* STATUS */}
+                                            <PokemonMenu title="Estatísticas">
+                                                <PokemonStats selectedPokemon={selectedPokemon} />
+                                            </PokemonMenu>
+                                            <ScrollBar
+                                                orientation="vertical"
+                                                className="bg-base-red/80 w-2 rounded-xl transition-all duration-300 hover:w-3"
+                                            />
                                         </ScrollArea>
                                     </div>
                                 </DrawerContent>

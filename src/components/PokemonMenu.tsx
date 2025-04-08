@@ -10,7 +10,7 @@ const PokemonMenu = ({ title, children }: PokemonMenuProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="border-b border-gray-300  ">
+        <div className="border-b border-gray-600  ">
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex justify-between items-center w-full px-4 py-3 text-left font-medium text-gray-800 bg-gradient-to-b from-[white] to-[#EBEBEB] hover:bg-gradient-to-b hover:from-[white] hover:to-[#dfdfdf]"
