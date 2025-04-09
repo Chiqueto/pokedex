@@ -2,7 +2,7 @@ import { MenuIcon } from "lucide-react";
 
 const Navbar = () => {
     return (
-        <header className="flex relative justify-center px-2 md:px-12 items-center text-2xl h-16 w-[100%] bg-base-red text-white">
+        <header className="flex fixed top-0 justify-center px-2 md:px-12 items-center text-2xl h-16 w-[100%] bg-base-red text-white z-50">
             <MenuIcon size={32} className="absolute left-2" />
             <p className="font-impact text-3xl flex-1 items-center text-center">Pokedex</p>
             {/* <nav>

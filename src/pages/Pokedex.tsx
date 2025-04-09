@@ -83,10 +83,10 @@ const Pokedex = () => {
 
     return (
 
-        <section className="flex flex-col h-[calc(100vh-64px)] overflow-hidden">
+        <section className="flex flex-col h-[calc(100vh)] overflow-hidden text-center">
             <Drawer>
 
-                <div className="mt-4 mx-2 flex flex-row justify-between items-center gap-3">
+                <div className="mt-10 mx-2 flex flex-row justify-between items-center gap-3">
                     <Input
                         type="text"
                         className=" w-full flex-1 bg-gray-100 border-base-red border shadow-sm rounded-xl h-10 focus:outline-1 focus:outline-base-red px-2 text-lg shadow-black/25"
@@ -101,9 +101,9 @@ const Pokedex = () => {
                         <Loading loading={loading} />
                     ) : (
 
-                        <ScrollArea className="mx-2 my-2 flex-1 h-[calc(100vh-128px)] ">
-                            <ul className="">
-                                <DrawerTrigger className="w-full space-y-4 mx-2 mr-4">
+                        <ScrollArea className="mx-2 my-2 flex-1 h-[calc(100vh-128px)]  ">
+                            <ul className="mx-2 flex justify-center items-center">
+                                <DrawerTrigger className="w-full space-y-4 mx-2 mr-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-screen-xl">
                                     {pokemons && pokeName === '' ? (
                                         pokemons.map((pokemon: Pokemon) => (
                                             <PokeCard pokemon={pokemon} setSelectedPokemon={setSelectedPokemon} />
@@ -120,7 +120,7 @@ const Pokedex = () => {
                                         <DrawerHeader className="p-0 rounded-3xl ">
                                             <HoverCardHeader pokemon={selectedPokemon} />
                                         </DrawerHeader>
-                                        <ScrollArea className="p-4 pb-10 bg-white h-72 overflow-y-auto">
+                                        <ScrollArea className="p-4 pb-10 bg-white h-72 overflow-y-auto ">
                                             {/* EVOLUÇÃO */}
                                             <PokemonMenu title="Cadeia Evolutiva">
                                                 <EvolutiveChain pokemon={selectedPokemon} />

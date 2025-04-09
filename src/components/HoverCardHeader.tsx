@@ -8,7 +8,7 @@ interface HoverCardProps {
 
 const HoverCardHeader = ({ pokemon }: HoverCardProps) => {
     return (
-        <div className="flex flex-col bg-gradient-to-b from-base-red to-[#A43737] rounded-b-3xl">
+        <div className="flex flex-col bg-gradient-to-b from-base-red to-[#A43737] rounded-b-3xl md:px-10 lg:px-20 xl:px-32 2xl:px-40">
             {/* Header */}
             <div className="flex flex-col py-4 ">
                 <div className="flex w-full flex-row items-center justify-between mx-4 font-navigation">

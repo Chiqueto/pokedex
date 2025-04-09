@@ -41,7 +41,7 @@ const PokeCard = ({ pokemon, setSelectedPokemon }: PokeCardProps) => {
                             alt={pokemon.name}
                             className="max-h-32 h-full z-30 mr-2 object-fill group-hover:scale-150 transition-transform duration-600"
                         />
-                        <img src="./Pokeball.svg" alt="Pokeball" className="absolute z-10" />
+                        <img src="/Pokeball.svg" alt="Pokeball" className="absolute z-10" />
                     </div>
                 </div>
             </div>
