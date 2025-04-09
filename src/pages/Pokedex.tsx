@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Pokemon } from "../types/Pokemon"
 import Loading from "../components/Loading";
-import { FilterIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
@@ -38,7 +38,7 @@ const Pokedex = () => {
                         fetch(result.url).then(res => res.json())
                     )
                 );
-                setOffSet(offSet + 50)
+                setOffSet(prev => prev + 50);
                 setPokemons(append ? [...pokemons, ...pokemonsDetailed] : pokemonsDetailed);
                 setLoading(false);
                 console.log("Pokémons atualizados:", pokemonsDetailed)
@@ -61,24 +61,34 @@ const Pokedex = () => {
     }
 
     useEffect(() => {
-        if (pokemons.length > 0 && pokemons.length < 1300) { // Evita loop infinito
-            setLoading(true)
-            const interval = setInterval(() => {
-                setOffSet(offSet + 50);
-                loadApi(true);
-            }, 2000);
-            return () => clearInterval(interval);
-        }
-    }, [pokemons])
+        if (pokemons.length >= 1300) return;
+        const timer = setTimeout(() => {
+            loadApi(true);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, [pokemons]);
 
-    useEffect(() => {
+    const handleSearch = async () => {
         if (pokeName === '') {
             setPokemonsFiltered([])
-        } else {
-            setPokemonsFiltered(pokemons.filter(pokemon => pokemon.name.includes(pokeName)))
+            return;
         }
-    }, [pokeName])
 
+        try {
+            setLoading(true);
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName.toLowerCase()}`);
+            if (!response.ok) {
+                throw new Error('Pokémon não encontrado');
+            }
+            const data = await response.json();
+            setPokemonsFiltered([data]);
+        } catch (error) {
+            console.error(error);
+            setPokemonsFiltered([]);
+        } finally {
+            setLoading(false);
+        }
+    }
 
 
     return (
@@ -92,8 +102,11 @@ const Pokedex = () => {
                         className=" w-full flex-1 bg-gray-100 border-base-red border shadow-sm rounded-xl h-10 focus:outline-1 focus:outline-base-red px-2 text-lg shadow-black/25"
                         onChange={handleNameChange}
                     />
-                    <Button className="bg-base-red border border-black p-2 rounded-xl flex items-center justify-center w-12 h-12">
-                        <FilterIcon className="w-full h-full" />
+                    <Button
+                        onClick={handleSearch}
+                        className="bg-base-red border border-black p-2 rounded-xl flex items-center justify-center w-12 h-12"
+                    >
+                        <SearchIcon className="w-full h-full" />
                     </Button>
                 </div>
                 <div className="text-center">
@@ -102,15 +115,15 @@ const Pokedex = () => {
                     ) : (
 
                         <ScrollArea className="mx-2 my-2 flex-1 h-[calc(100vh-128px)]  ">
-                            <ul className="mx-2 flex justify-center items-center">
-                                <DrawerTrigger className="w-full space-y-4 mx-2 mr-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-screen-xl">
-                                    {pokemons && pokeName === '' ? (
+                            <ul className="mx-2 flex justify-center items-center ">
+                                <DrawerTrigger className="text-center w-full space-y-4 mx-2 mr-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-screen-xl">
+                                    {pokemons && pokemonsFiltered.length === 0 ? (
                                         pokemons.map((pokemon: Pokemon) => (
                                             <PokeCard pokemon={pokemon} setSelectedPokemon={setSelectedPokemon} />
                                         ))) : pokemonsFiltered.length !== 0 ? (
                                             pokemonsFiltered.map((pokemon: Pokemon) => (
                                                 <PokeCard pokemon={pokemon} setSelectedPokemon={setSelectedPokemon} />))
-                                        ) : (<li>Nenhum pokémon encontrado</li>)
+                                        ) : (<li className="col-span-3 md:col-span-6">Nenhum pokémon encontrado</li>)
                                     }
                                 </DrawerTrigger>
                             </ul>
