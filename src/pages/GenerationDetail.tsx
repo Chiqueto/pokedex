@@ -3,7 +3,7 @@ import PokeCard from '@/components/PokeCard';
 import PokemonDetails from '@/components/PokemonDetails';
 import { Drawer, DrawerTrigger } from '@/components/ui/drawer';
 import { Pokemon } from '@/types/Pokemon';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 interface Generation {
