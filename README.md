@@ -9,7 +9,6 @@ Uma aplicação web feita com React que permite explorar Pokémon por nome ou po
 ### 🎯 Objetivo
 Criar uma aplicação **responsiva** com **rotas dinâmicas**, possibilitando a navegação entre gerações e visualização detalhada dos Pokémon, incluindo imagens, tipos, status base, habilidades, etc.
 
-### 📸 Screenshots
 
 ### 📸 Screenshots
 
@@ -19,7 +18,7 @@ Criar uma aplicação **responsiva** com **rotas dinâmicas**, possibilitando a 
 
 | 🧬 Lista das Gerações | 📋 Detalhes da Geração |
 |------------|------------------------|
-| <img src="https://github.com/user-attachments/assets/14e58e91-20df-474c-a07f-a4996200bf10" width="300"/> | <img src="" width="300"/> |
+| <img src="https://github.com/user-attachments/assets/14e58e91-20df-474c-a07f-a4996200bf10" width="300"/> | <img src="https://github.com/user-attachments/assets/4c3aa57a-3ed9-45ba-9bba-77dcd89a536d" width="300"/> |
 
 
 
