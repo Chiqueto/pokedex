@@ -11,12 +11,16 @@ Criar uma aplicação **responsiva** com **rotas dinâmicas**, possibilitando a 
 
 ### 📸 Screenshots
 
-| Gerações | Detalhes do Pokémon |
-|---------|---------------------|
-| <img src="[https://github.com/user-attachments/assets/863895dc-c5ac-48f2-9ab2-186df56e7cfa](https://github.com/user-attachments/assets/c8a5b307-27e6-4cc6-8308-5a917bb0eb50)" width="300"/> | <img src="https://github.com/user-attachments/assets/c42457e1-c3af-4f7c-b4a4-d3838ea9d2d1" width="300"/> |
-| Visão Desktop |
-|--------------|
-| <img src="https://github.com/user-attachments/assets/863895dc-c5ac-48f2-9ab2-186df56e7cfa" width="300"/> |
+### 📸 Screenshots
+
+| 🧬 Lista dos Pokémon | 📋 Detalhes do Pokémon |
+|------------|------------------------|
+| <img src="https://github.com/user-attachments/assets/c8a5b307-27e6-4cc6-8308-5a917bb0eb50" width="300"/> | <img src="https://github.com/user-attachments/assets/c42457e1-c3af-4f7c-b4a4-d3838ea9d2d1" width="300"/> |
+
+#### 💻 Visão Desktop
+
+<img src="https://github.com/user-attachments/assets/863895dc-c5ac-48f2-9ab2-186df56e7cfa" width="600"/>
+
 
 ---
 
