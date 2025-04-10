@@ -4,14 +4,11 @@ import Loading from "../components/Loading";
 import { SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { ScrollArea, } from "@/components/ui/scroll-area";
 import PokeCard from "@/components/PokeCard";
-import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from "@/components/ui/drawer";
-import HoverCardHeader from "@/components/HoverCardHeader";
-import PokemonMenu from "@/components/PokemonMenu";
-import EvolutiveChain from "@/components/EvolutiveChain";
-import PokemonStats from "@/components/PokemonStats";
-import TypeReferences from "@/components/TypeReferences";
+import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
+
+import PokemonDetails from "@/components/PokemonDetails";
 
 type JsonResult = {
     name: string,
@@ -30,6 +27,7 @@ const Pokedex = () => {
 
     function loadApi(append: boolean) {
         const url = `https://pokeapi.co/api/v2/pokemon?offset=${offSet}&limit=50`
+        setLoading(true)
         fetch(url)
             .then(response => response.json())
             .then(async (json) => {
@@ -93,10 +91,10 @@ const Pokedex = () => {
 
     return (
 
-        <section className="flex flex-col h-[calc(100vh)] overflow-hidden text-center">
+        <section className="flex flex-col h-[calc(100vh - 180px)] overflow-hidden text-center pokedex">
             <Drawer>
 
-                <div className="mt-10 mx-2 flex flex-row justify-between items-center gap-3">
+                <div className="mt-1 pt-6 mx-2 flex flex-row justify-between items-center gap-3">
                     <Input
                         type="text"
                         className=" w-full flex-1 bg-gray-100 border-base-red border shadow-sm rounded-xl h-10 focus:outline-1 focus:outline-base-red px-2 text-lg shadow-black/25"
@@ -104,7 +102,7 @@ const Pokedex = () => {
                     />
                     <Button
                         onClick={handleSearch}
-                        className="bg-base-red border border-black p-2 rounded-xl flex items-center justify-center w-12 h-12"
+                        className="bg-base-red border border-black p-2 rounded-xl flex items-center justify-center w-11 h-11"
                     >
                         <SearchIcon className="w-full h-full" />
                     </Button>
@@ -128,31 +126,7 @@ const Pokedex = () => {
                                 </DrawerTrigger>
                             </ul>
                             {selectedPokemon &&
-                                < DrawerContent className="mx-auto w-full bg-base-red ">
-                                    <div className="mx-auto w-full  bg-white ">
-                                        <DrawerHeader className="p-0 rounded-3xl ">
-                                            <HoverCardHeader pokemon={selectedPokemon} />
-                                        </DrawerHeader>
-                                        <ScrollArea className="p-4 pb-10 bg-white h-72 overflow-y-auto ">
-                                            {/* EVOLUÇÃO */}
-                                            <PokemonMenu title="Cadeia Evolutiva">
-                                                <EvolutiveChain pokemon={selectedPokemon} />
-                                            </PokemonMenu>
-                                            {/* TIPAGENS */}
-                                            <PokemonMenu title="Fraquezas & Resistências">
-                                                <TypeReferences pokemon={selectedPokemon} />
-                                            </PokemonMenu>
-                                            {/* STATUS */}
-                                            <PokemonMenu title="Estatísticas">
-                                                <PokemonStats selectedPokemon={selectedPokemon} />
-                                            </PokemonMenu>
-                                            <ScrollBar
-                                                orientation="vertical"
-                                                className="bg-base-red/80 w-2 rounded-xl transition-all duration-300 hover:w-3"
-                                            />
-                                        </ScrollArea>
-                                    </div>
-                                </DrawerContent>
+                                <PokemonDetails selectedPokemon={selectedPokemon} />
                             }
 
                             {loading && <Loading loading color="red" size={100} />}

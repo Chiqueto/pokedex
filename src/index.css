@@ -10,7 +10,7 @@
   --font-navigation: "Exo 2", sans-serif;
 
   --color-base-red: #ff5454;
-  --color-gray-base: #f6f7f9;
+  --color-gray-base: #f6f6f6;
 }
 
 :root {
@@ -127,9 +127,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-html,
-body {
-  overflow: hidden;
 }

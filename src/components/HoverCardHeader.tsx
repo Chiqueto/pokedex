@@ -27,7 +27,7 @@ const HoverCardHeader = ({ pokemon }: HoverCardProps) => {
                             alt={pokemon.name}
                             className="max-h-32 h-full z-30 mr-2 object-fill group-hover:scale-150 transition-transform duration-600"
                         />
-                        <img src="./Pokeball.svg" alt="Pokeball" className="absolute z-10" />
+                        <img src="/Pokeball.svg" alt="Pokeball" className="absolute z-10" />
                     </div>
                 </div>
                 <div className="bg-white rounded-xl mx-8 flex mt-4 justify-between text-center items-stretch px-2 shadow-md">
