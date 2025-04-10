@@ -18,7 +18,7 @@ Criar uma aplicação **responsiva** com **rotas dinâmicas**, possibilitando a 
 
 | 🧬 Lista das Gerações | 📋 Detalhes da Geração |
 |------------|------------------------|
-| <img src="https://github.com/user-attachments/assets/14e58e91-20df-474c-a07f-a4996200bf10" width="300"/> | <img src="https://github.com/user-attachments/assets/4c3aa57a-3ed9-45ba-9bba-77dcd89a536d" width="300"/> |
+| <img src="https://github.com/user-attachments/assets/14e58e91-20df-474c-a07f-a4996200bf10" width="300"/> | <img src="https://github.com/user-attachments/assets/f4bcdf56-7dd8-4af8-86ac-5518c1c7aaa5" width="300"/> |
 
 
 
@@ -49,7 +49,6 @@ Criar um formulário onde o usuário pode buscar um Pokémon pelo nome. A aplica
 - 🍃 **ShadCN/UI**
 - 🔍 **PokéAPI** (https://pokeapi.co/)
 - 📦 Vite
-- 🎨 Framer Motion (animações)
 
 ---
 
