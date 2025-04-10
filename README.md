@@ -14,7 +14,7 @@ Criar uma aplicação **responsiva** com **rotas dinâmicas**, possibilitando a 
 | Gerações | Detalhes do Pokémon |
 |---------|---------------------|
 
-| <img src="https://github.com/user-attachments/assets/863895dc-c5ac-48f2-9ab2-186df56e7cfa" width="300"/> | <img src="https://github.com/user-attachments/assets/8e71206a-ceab-414b-84d9-7700e9207273" width="300" /> |
+| <img src="https://github.com/user-attachments/assets/863895dc-c5ac-48f2-9ab2-186df56e7cfa" width="300"/> | <img src="https://github.com/user-attachments/assets/c42457e1-c3af-4f7c-b4a4-d3838ea9d2d1" width="300"/>|
 
 ---
 
@@ -25,7 +25,7 @@ Criar uma aplicação **responsiva** com **rotas dinâmicas**, possibilitando a 
 ### 🎯 Objetivo
 Criar um formulário onde o usuário pode buscar um Pokémon pelo nome. A aplicação retorna informações como imagem, tipos, peso, altura e habilidades do Pokémon buscado.
 
-| <img src="https://github.com/user-attachments/assets/34e8010e-a475-4865-811b-581ed6aedbf0" width="300"/> <img src="https://github.com/user-attachments/assets/c42457e1-c3af-4f7c-b4a4-d3838ea9d2d1" width="300"/>|
+| <img src="https://github.com/user-attachments/assets/34e8010e-a475-4865-811b-581ed6aedbf0" width="300"/> 
 
 
 ---
