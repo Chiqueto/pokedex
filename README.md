@@ -1,16 +1,63 @@
-# Pokédex!
-## V2
-### Objetivo
-Criar uma aplicação responsiva com rotas dinâmicas
-<br />
-Link para acesso: <a href="https://pokedex-8gc8d6k1c-luis-felipe-mozer-chiquetos-projects.vercel.app/" > Pokedex! </a>
+# 📘 Pokédex!
 
+Uma aplicação web feita com React que permite explorar Pokémon por nome ou por geração, trazendo detalhes completos sobre cada um deles!
 
-## MAIN
-### Objetivo
-Criar um form onde o usuário deverá passar o nome do Pokémon e a aplicação deverá mostrar diversas informações desse Pokémon procurado.
-<br />
-Link para acesso: <a href="https://pokedex-alpha-jade.vercel.app/"> Pokedex v1 </a>
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/34e8010e-a475-4865-811b-581ed6aedbf0" width="300"/>
-</p>
+## 🔄 Versão 2 (Atual)
+
+> Link: [Acessar Pokedex V2](https://pokedex-8gc8d6k1c-luis-felipe-mozer-chiquetos-projects.vercel.app/)
+
+### 🎯 Objetivo
+Criar uma aplicação **responsiva** com **rotas dinâmicas**, possibilitando a navegação entre gerações e visualização detalhada dos Pokémon, incluindo imagens, tipos, status base, habilidades, etc.
+
+### 📸 Screenshots
+
+| Gerações | Detalhes do Pokémon |
+|---------|---------------------|
+| <img src="https://github.com/user-attachments/assets/34e8010e-a475-4865-811b-581ed6aedbf0" width="300"/> | _Adicione aqui uma imagem da V2 mostrando os detalhes de um Pokémon_ |
+
+---
+
+## 🧪 Versão 1 (Main)
+
+> Link: [Acessar Pokedex V1](https://pokedex-alpha-jade.vercel.app/)
+
+### 🎯 Objetivo
+Criar um formulário onde o usuário pode buscar um Pokémon pelo nome. A aplicação retorna informações como imagem, tipos, peso, altura e habilidades do Pokémon buscado.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- ⚛️ **React**
+- 🌐 **React Router DOM**
+- 💅 **Tailwind CSS**
+- 🍃 **ShadCN/UI**
+- 🔍 **PokéAPI** (https://pokeapi.co/)
+- 📦 Vite
+- 🎨 Framer Motion (animações)
+
+---
+
+## 🧠 Aprendizados
+
+- Criação de rotas dinâmicas com React Router
+- Utilização de hooks como `useEffect`, `useState`
+- Manipulação de APIs REST
+- Estilização responsiva com Tailwind CSS
+- Gerenciamento de estado local
+- Componentização e reuso de código
+- Implementação de componentes interativos como drawers e modais
+
+---
+
+## 💻 Como rodar o projeto localmente
+
+```bash
+# Clone o repositório
+git clone https://github.com/chiqueto/pokedex.git
+
+# Instale as dependências
+npm install
+
+# Inicie o projeto
+npm run dev
