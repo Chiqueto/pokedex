@@ -17,6 +17,12 @@ Criar uma aplicação **responsiva** com **rotas dinâmicas**, possibilitando a 
 |------------|------------------------|
 | <img src="https://github.com/user-attachments/assets/c8a5b307-27e6-4cc6-8308-5a917bb0eb50" width="300"/> | <img src="https://github.com/user-attachments/assets/c42457e1-c3af-4f7c-b4a4-d3838ea9d2d1" width="300"/> |
 
+| 🧬 Lista das Gerações | 📋 Detalhes da Geração |
+|------------|------------------------|
+| <img src="https://github.com/user-attachments/assets/14e58e91-20df-474c-a07f-a4996200bf10" width="300"/> | <img src="" width="300"/> |
+
+
+
 #### 💻 Visão Desktop
 
 <img src="https://github.com/user-attachments/assets/863895dc-c5ac-48f2-9ab2-186df56e7cfa" width="600"/>
